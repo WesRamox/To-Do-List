@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do LIST</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">Task List<span style="color: rgb(0, 132, 255);">.</span></h1>
+        <div class="box">
+            <input type="text" name="newTask" id="newTask" placeholder=" Add a new task">
+
+            <div class="buttons">
+                <div id="subButtons">
+                    <button onclick="getAll()">All</button>
+                    <button onclick="getPending()">Pending</button>
+                    <button onclick="getCompleted()">Completed</button>
+
+                </div>
+                <button class="clearButton">Clear All</button>
+            </div>
+        </div>
+            <div id="listBox">
+                <p class="warning">No tasks here</p>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
