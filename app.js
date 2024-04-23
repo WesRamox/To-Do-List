@@ -43,7 +43,7 @@ function addNewTask() {
     
     let newTaskElement = document.createElement("div")
     newTaskElement.classList.add(`item-${newTask.id}`, "task")
-    
+    //
     newTaskElement.innerHTML = `
     <input type="checkbox" name="${newTask.id}" id="${newTask.id}" onclick="checkedTask(${newTask.id})">
     <p id="p-${newTask.id}">${newTask.taskName}</p>
@@ -55,7 +55,6 @@ function addNewTask() {
     listBox.append(newTaskElement)
     taskList.push(newTask)
 
-    //
 
     localStorage.setItem("taskList", JSON.stringify(taskList))
 
