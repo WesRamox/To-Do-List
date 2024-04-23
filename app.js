@@ -1,22 +1,37 @@
 let taskDescription = document.getElementById("newTask")
-let listBox = document.getElementById("listBox");
-let warning = document.querySelector(".warning");
+let listBox = document.getElementById("listBox")
+let warning = document.querySelector(".warning")
 
-let date = new Date().toLocaleDateString('pt-BR');
-let updatedDate = date;
+let date = new Date().toLocaleDateString('pt-BR')
+let updatedDate = date
 
-let taskList = [];
-let updatedList = JSON.parse(localStorage.getItem("taskList"));
+let taskList = []
 let newTask;
 
 if(taskList == 0) {
     warning.style.display = "block"
 }
 
-function loadTasks() {
+function getAll() {
+}
+
+function getPending() {
 
 }
 
+function getCompleted() {
+
+}
+
+function clearAll() {
+    if(taskList != 0) {
+        taskList = []
+        for(let i = 0; i <= taskList.length; i++) {
+            let listNew = listBox.removeChild()
+            console.log(listNew)
+        }
+    }
+}
 
 function addNewTask() {
     newTask = {
@@ -39,26 +54,23 @@ function addNewTask() {
     `
     listBox.append(newTaskElement)
     taskList.push(newTask)
-    
-    localStorage.setItem("taskList", JSON.stringify(updatedList))
-    
+
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+
     if (localStorage.hasOwnProperty("taskList")) {
         taskList = JSON.parse(localStorage.getItem("taskList"))
     }
     
     taskDescription.value = ""
     warning.style.display = "none"
-    
+
 }
 
 function deleteTask(id) {
     taskList.splice(id, 1)
-    localStorage.setItem("taskList", JSON.stringify(taskList))
-    
     document.querySelector(`.item-${id}`).remove()
-    
-    if(updatedList == 0) {
-        localStorage.removeItem("taskList");
+
+    if(taskList == 0) {
         warning.style.display = "block"
     }
 }
@@ -79,4 +91,3 @@ taskDescription.addEventListener("keypress", (e) => {
     }
 })
 
-loadTasks()
