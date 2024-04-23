@@ -1,27 +1,22 @@
 let taskDescription = document.getElementById("newTask")
-let listBox = document.getElementById("listBox")
-let warning = document.querySelector(".warning")
+let listBox = document.getElementById("listBox");
+let warning = document.querySelector(".warning");
 
-let date = new Date()
-let updatedDate = date.getUTCDate
+let date = new Date().toLocaleDateString('pt-BR');
+let updatedDate = date;
 
-let taskList = []
+let taskList = [];
+let updatedList = JSON.parse(localStorage.getItem("taskList"));
 let newTask;
 
 if(taskList == 0) {
     warning.style.display = "block"
 }
 
-function getAll() {
-}
-
-function getPending() {
+function loadTasks() {
 
 }
 
-function getCompleted() {
-
-}
 
 function addNewTask() {
     newTask = {
@@ -37,19 +32,33 @@ function addNewTask() {
     newTaskElement.innerHTML = `
     <input type="checkbox" name="${newTask.id}" id="${newTask.id}" onclick="checkedTask(${newTask.id})">
     <p id="p-${newTask.id}">${newTask.taskName}</p>
-    <button id="delete-${newTask.id}" onclick="deleteTask(${newTask.id});">Delete</button>
+    <button id="delete-${newTask.id}" class="btnDelete" onclick="deleteTask(${newTask.id});">
+    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+    </svg></button>
     `
     listBox.append(newTaskElement)
     taskList.push(newTask)
     
+    localStorage.setItem("taskList", JSON.stringify(updatedList))
+    
+    if (localStorage.hasOwnProperty("taskList")) {
+        taskList = JSON.parse(localStorage.getItem("taskList"))
+    }
+    
+    taskDescription.value = ""
     warning.style.display = "none"
+    
 }
 
 function deleteTask(id) {
     taskList.splice(id, 1)
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+    
     document.querySelector(`.item-${id}`).remove()
-
-    if(taskList == 0) {
+    
+    if(updatedList == 0) {
+        localStorage.removeItem("taskList");
         warning.style.display = "block"
     }
 }
@@ -70,3 +79,4 @@ taskDescription.addEventListener("keypress", (e) => {
     }
 })
 
+loadTasks()

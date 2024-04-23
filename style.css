@@ -7,6 +7,15 @@
     font-family: "Roboto", sans-serif;
 }
 
+input:focus::placeholder {
+    color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+*:focus {
+    outline: none;
+}
+
 .container {
     height: 100vh;
     display: flex;
@@ -21,6 +30,7 @@
     font-family: "Roboto", sans-serif;
     font-size: 4rem;
     margin-bottom: 20px;
+    cursor: default;
 }
 
 .box, #listBox {
@@ -37,19 +47,37 @@
     color: rgba(27, 47, 65, 0.685);
     padding: 10px;
     text-align: center;
+    cursor: default;
 }
 
 #newTask {
-    padding: 2px;
+    padding: 3px;
     height: 30px;
     width: 100%;
     font-size: 1.2rem;
+    border: none;
+    border-bottom: solid rgb(146, 146, 146) 2px;
+    background-color: rgba(245, 245, 245, 0.305);
+    transition: all 0.5s ease;
+}
+
+
+#newTask:hover {
+    border-bottom: solid rgb(26, 26, 26) 2px;
+    transition: all 0.5s ease-out;
+    outline: none;
+}
+
+#newTask:focus {
+    border-bottom: solid rgb(51, 118, 250) 2px;
+    transition: all 0.5s ease-out;
+    outline: none;
 }
 
 .clearButton {
     background-color: rgb(40, 136, 255);
     padding: 5px 10px;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
 }
 
@@ -84,10 +112,42 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
+    position: relative;
+}
+
+.task::after {
+    content: "";
+    /*display: block; not needed when position:absolute used in this case*/
+    position: absolute;
+    background-color: #25252565;
+    height: 1px;
+    bottom:-10px;
+    left: 0;/* match width of text and padding*/
+    right: 0;/* match width of text and padding*/
+    /* width: 20%;*/
 }
 
 .task p {
     width: 70%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    position: relative;
+}
+
+.task input[type="checkbox"] {
+    width: 1.5rem;
+}
+
+.btnDelete {
+    border: none;
+    transition: all 0.5s;
+}
+
+.btnDelete:hover {
+    color: rgb(51, 118, 250);
+    cursor: pointer;
+    transition: all 0.5s;
 }
 
 .checked {
