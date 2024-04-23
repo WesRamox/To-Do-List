@@ -55,6 +55,8 @@ function addNewTask() {
     listBox.append(newTaskElement)
     taskList.push(newTask)
 
+    //
+
     localStorage.setItem("taskList", JSON.stringify(taskList))
 
     if (localStorage.hasOwnProperty("taskList")) {
