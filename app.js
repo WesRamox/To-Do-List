@@ -8,9 +8,7 @@ let updatedDate = date
 let taskList = []
 let newTask;
 
-if(taskList == 0) {
-    warning.style.display = "block"
-}
+console.log(taskList.length)
 
 function getAll() {
 }
@@ -24,13 +22,7 @@ function getCompleted() {
 }
 
 function clearAll() {
-    if(taskList != 0) {
-        taskList = []
-        for(let i = 0; i <= taskList.length; i++) {
-            let listNew = listBox.removeChild()
-            console.log(listNew)
-        }
-    }
+
 }
 
 function addNewTask() {
@@ -43,7 +35,7 @@ function addNewTask() {
     
     let newTaskElement = document.createElement("div")
     newTaskElement.classList.add(`item-${newTask.id}`, "task")
-    //
+    
     newTaskElement.innerHTML = `
     <input type="checkbox" name="${newTask.id}" id="${newTask.id}" onclick="checkedTask(${newTask.id})">
     <p id="p-${newTask.id}">${newTask.taskName}</p>
@@ -52,19 +44,13 @@ function addNewTask() {
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
     </svg></button>
     `
-    listBox.append(newTaskElement)
     taskList.push(newTask)
+    listBox.append(newTaskElement)
 
-
-    localStorage.setItem("taskList", JSON.stringify(taskList))
-
-    if (localStorage.hasOwnProperty("taskList")) {
-        taskList = JSON.parse(localStorage.getItem("taskList"))
-    }
-    
     taskDescription.value = ""
     warning.style.display = "none"
 
+    saveData();
 }
 
 function deleteTask(id) {
@@ -74,6 +60,8 @@ function deleteTask(id) {
     if(taskList == 0) {
         warning.style.display = "block"
     }
+
+    saveData();
 }
 
 function checkedTask(id) {
@@ -92,3 +80,34 @@ taskDescription.addEventListener("keypress", (e) => {
     }
 })
 
+function saveData() {
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+
+}
+
+function loadData() {
+    let listStorage = localStorage.getItem("taskList")
+    
+    listStorage = JSON.parse(listStorage)
+    
+    taskList = listStorage
+
+
+    listStorage.forEach(e => {
+        let itemTask = document.createElement("div")
+        itemTask.classList.add(`item-${e.id}`, "task")
+        //
+        itemTask.innerHTML = `
+        <input type="checkbox" name="${e.id}" id="${e.id}" onclick="checkedTask(${e.id})">
+        <p id="p-${e.id}">${e.taskName}</p>
+        <button id="delete-${e.id}" class="btnDelete" onclick="deleteTask(${e.id});">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+        </svg></button>
+        `
+        listBox.append(itemTask)
+    });
+    saveData();
+}
+
+loadData();
