@@ -48,6 +48,8 @@ input:focus::placeholder {
     padding: 10px;
     text-align: center;
     cursor: default;
+    margin-top: 15px;
+    background-color: whitesmoke;
 }
 
 #newTask {
