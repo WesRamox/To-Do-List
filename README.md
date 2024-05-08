@@ -3,7 +3,7 @@
 
 Uma aplicação de Tarefas simples, feito em Javascript e estilização com CSS puro.
 
-![Aplicativo](https://snipboard.io/jeFW5S.jpg)
+![Aplicativo](https://snipboard.io/BFP7Ah.jpg)
 
 - [Veja aqui](https://task-list-e.vercel.app/)
 
