@@ -11,10 +11,13 @@ Uma aplicação de Tarefas simples, feito em Javascript e estilização com CSS 
 
 HTML, CSS e JAVASCRIPT
 
+### Oque falta?
+- Adicionar checked True ao atualizar a página
+- Separar por categorias, ex: Todas, pendentes e concluidas.
+
 ## Autor
 
 - [@WesRamox](https://www.github.com/wesramox)
-
 
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wesleyramox/)
