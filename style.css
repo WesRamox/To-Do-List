@@ -20,8 +20,9 @@ input:focus::placeholder {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    padding-top: 200px;
 }
 
 .logo {
@@ -54,13 +55,14 @@ input:focus::placeholder {
 
 #newTask {
     padding: 3px;
-    height: 30px;
+    height: 40px;
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     border: none;
     border-bottom: solid rgb(146, 146, 146) 2px;
     background-color: rgba(245, 245, 245, 0.305);
     transition: all 0.5s ease;
+    padding: 10px;
 }
 
 
@@ -81,6 +83,13 @@ input:focus::placeholder {
     padding: 5px 10px;
     color: rgb(255, 255, 255);
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.clearButton:hover {
+    color: black;
+    transition: all 0.5s ease-out;
 }
 
 .buttons {
@@ -102,6 +111,12 @@ input:focus::placeholder {
     border: none;
     border-bottom: 1px solid black;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+#subButtons button:hover {
+    color: rgb(0, 123, 255);
+    transition: all 0.5s ease;
 }
 
 #listBox {
@@ -144,10 +159,14 @@ input:focus::placeholder {
 .btnDelete {
     border: none;
     transition: all 0.5s;
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .btnDelete:hover {
-    color: rgb(51, 118, 250);
+    color: rgb(52, 52, 52);
     cursor: pointer;
     transition: all 0.5s;
 }
